@@ -20,4 +20,9 @@ node * getTailQ(Queue *q);
 void enQueue(Queue *q,int val);
 int dequeue(Queue *q);int getFront(Queue*q);
 int isQempty(Queue *q);
+// radix.cpp
+
+int getDigit(int val,int digit);
+int getMaxNumber(int *arr, int count);
+int countDigits(int val);
 #endif //RADIXSORTING_HEADER_H

@@ -2,8 +2,7 @@
 #include <stdio.h>
 #include "header.h"
 #define Ten 10
-//getMax();
-//CountDigits()
+
 
 int getMaxNumber(int *arr, int count){
     int max = arr[0];
@@ -17,4 +16,8 @@ int countDigits(int val){
 }
 int getDigit(int val,int digit) {
     return (int)(val / pow(Ten, digit - 1)) % Ten;
+}
+
+void radixSorting(int *arr, int count){
+
 }
