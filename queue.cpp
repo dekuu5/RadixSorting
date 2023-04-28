@@ -38,7 +38,7 @@ node *getTail(node *n) {
         while (getNext(n)) n=getNext(n);
     return n;
 }
-typedef struct {
+/*typedef struct {
     node *Head;
     node *Tail;
 }Queue;
@@ -75,4 +75,30 @@ int getFront(Queue*q){return getHeadQ(q)->data;}
 
 int isQempty(Queue *q) {
     return !getHeadQ(q);
+}
+
+*/
+
+void enqueue_array(node **ar,int index,int value){
+    node *newN=newNode(value);
+    if(ar[index]){
+        node *tail=getTail(ar[index]);
+        tail->next=newN;
+    }
+    else ar[index]=newN;
+}
+
+void dequeue_to_array(int *ar,node **queues){
+    int j=0;
+    node *del;
+    int value;
+    for(int i=0;i<10;i++){
+        while (queues[i]){
+            del=queues[i];
+            queues[i]=queues[i]->next;
+            value=del->data;
+            free(del);
+            ar[j++]=value;
+        }
+    }
 }
