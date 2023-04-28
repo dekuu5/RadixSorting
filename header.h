@@ -13,8 +13,8 @@ node *getNext(node *n);
 node *insNodeAfter(node *n,int value );
 node *delNodeAfter(node *n);
 node *getTail(node *n);
-/*typedef struct Queue;
-typedef struct Queue {} Queue;
+typedef struct Queue Queue;
+//typedef struct Queue {} Queue;
 Queue* initQueue();
 node * getHeadQ(Queue *q);
 node * getTailQ(Queue *q);
@@ -22,8 +22,6 @@ void enQueue(Queue *q,int val);
 int dequeue(Queue *q);int getFront(Queue*q);
 int isQempty(Queue *q);
 
-*/
-#include "queue.cpp"
 
 // radix.cpp
 
