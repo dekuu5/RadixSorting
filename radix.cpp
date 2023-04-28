@@ -19,5 +19,13 @@ int getDigit(int val,int digit) {
 }
 
 void radixSorting(int *arr, int count){
+    Queue **queueArr = (Queue **)malloc(sizeof(Queue*) * Ten);
+    for (int i = 0; i < Ten; ++i) {
+        queueArr[i] = initQueue();
+        queueArr[i]->Head = newNode(i);
+    }
+    for (int i = 0; i < Ten; ++i) {
+        printf("%d",queueArr[i]->Head->data);
+    }
 
 }

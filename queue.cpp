@@ -41,7 +41,7 @@ node *getTail(node *n) {
 typedef struct Queue {
     node *Head;
     node *Tail;
-} Queue;
+}Queue;
 Queue* initQueue(){
     Queue *q= (Queue *)malloc(sizeof(Queue));
     q->Head = NULL;
