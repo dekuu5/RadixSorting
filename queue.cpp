@@ -38,10 +38,10 @@ node *getTail(node *n) {
         while (getNext(n)) n=getNext(n);
     return n;
 }
-typedef struct {
+typedef struct Queue {
     node *Head;
     node *Tail;
-}Queue;
+} Queue;
 Queue* initQueue(){
     Queue *q= (Queue *)malloc(sizeof(Queue));
     q->Head = NULL;
