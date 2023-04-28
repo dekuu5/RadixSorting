@@ -41,62 +41,38 @@ node *getTail(node *n) {
 typedef struct {
     node *Head;
     node *Tail;
-} Deque;
-
-Deque *newDeque() {
-    Deque *dq= (Deque *)malloc(sizeof(Deque));
-    dq->Head=dq->Tail=NULL;
-    return dq;
-}
-node * getHeadDQ(Deque *dq) {
-    return dq->Head;
-}
-node * getTailDQ(Deque *dq) {
-    return dq->Tail;
-}
-
-
-void insHead(Deque* dq,int val)        ///O(1)
-{
-    node *Head=getHeadDQ(dq);
-    // node *n=insNodeAfter(NULL,val); // OR
-    node *n=newNode(val);
-    n->next=Head;dq->Head=n;
-    if(!getTailDQ(dq)) dq->Tail=n;
-}
-
-void insTail(Deque* dq,int val)          ///O(1)
-{
-    node *Tail=getTailDQ(dq);
-    node *nTail=dq->Tail=insNodeAfter(Tail,val);
-    if(!getHeadDQ(dq)) dq->Head=nTail;
-}
-
-
-int isemptyDQ(Deque *dq){  /// O(1)
-    return !getHeadDQ(dq);
-}
-void delHead(Deque *dq)                   ///O(1)
-{
-    node *Head=getHeadDQ(dq);
-    if(!Head) {printf("Underflow"); return;}
-    if(!getNext(Head)) /// Last element dead
-        dq->Head = dq->Tail=NULL;
-    else
-        dq->Head = getNext(Head);
-    free(Head);
-}
-
-typedef struct {Deque *dq;}Queue;
+}Queue;
 Queue* initQueue(){
-    Queue* d=malloc(sizeof(Deque));
-    d->dq=newDeque();return d;
+    Queue *q= (Queue *)malloc(sizeof(Queue));
+    q->Head = NULL;
+    q->Tail = NULL;
+    return q;
+}
+node * getHeadQ(Queue *q) {
+    return q->Head;
+}
+node * getTailQ(Queue *q) {
+    return q->Tail;
 }
 
 void enQueue(Queue *q,int val){
-    insTail(q->dq,val);
+    node *Tail=getTailQ(q);
+    node *nTail = insNodeAfter(Tail,val);
+    q->Tail= nTail;
 }
-void dequeue(Queue*q){delHead(q->dq);}
-int getFront(Queue*q){return getHeadDQ(q->dq)->data;}
-int isQempty(Queue *q) {return  isemptyDQ(q->dq);;}
+int dequeue(Queue *q){
+    node *Head=getHeadQ(q);
+    int data = Head->data;
+    if(!getNext(Head)) {
+        q->Head = NULL;
+        q->Tail = NULL;
+    }else
+        q->Head = getNext(Head);
+    free(Head);
+    return data;
+}
+int getFront(Queue*q){return getHeadQ(q)->data;}
 
+int isQempty(Queue *q) {
+    return !getHeadQ(q);
+}
