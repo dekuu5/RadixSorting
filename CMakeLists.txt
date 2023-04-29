@@ -9,4 +9,5 @@ add_executable(RadixSorting
         header.h
         main.cpp
         queue.cpp
-        radix.cpp)
+        radix.cpp
+        IO.cpp)

@@ -2,7 +2,8 @@
 #include <stdio.h>
 #include "header.h"
 #define Ten 10
-
+//getMax();
+//CountDigits()
 
 int getMaxNumber(int *arr, int count){
     int max = arr[0];
@@ -15,17 +16,31 @@ int countDigits(int val){
     return (val==0)?1:log10(val)+1;
 }
 int getDigit(int val,int digit) {
-    return (int)(val / pow(Ten, digit - 1)) % Ten;
+    return (int)(val / pow(Ten, digit)) % Ten;
 }
 
-void radixSorting(int *arr, int count){
-    Queue **queueArr = (Queue **)malloc(sizeof(Queue*) * Ten);
-    for (int i = 0; i < Ten; ++i) {
-        queueArr[i] = initQueue();
-        queueArr[i]->Head = newNode(i);
-    }
-    for (int i = 0; i < Ten; ++i) {
-        printf("%d",queueArr[i]->Head->data);
-    }
 
+void radix_sort(int *ar,int count){
+    int max= getMaxNumber(ar,count);
+    int digits=countDigits(max);
+    int index,value;
+    for(int i=0;i<digits;i++){
+        node* queues_Array[10]={NULL};
+        for(int j=0;j<count;j++){
+            enqueue_array(queues_Array, getDigit(ar[j], i), ar[j]);
+        }
+        dequeue_to_array(ar,queues_Array);
+    }
+}
+void doRadix(){
+    int *arr = (int *) malloc(100* sizeof(int));
+    int size = 0;
+    char * str = getInput();
+    getArrayFromString(arr, str,&size);
+    radix_sort(arr,size);
+    printf("your function after sorting is :\n");
+    for(int i=0;i<size;i++){
+        printf("%d-",arr[i]);
+    }
+    printf("\n");
 }
